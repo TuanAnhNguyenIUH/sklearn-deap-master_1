@@ -36,15 +36,20 @@ def _get_param_types_maxint(params):
     """
     name_values = list(params.items())
     types = []
+   def _get_param_types_maxint(params):
+    name_values = list(params.items())
+    types = []
     for _, possible_values in name_values:
+        # Kiểm tra xem possible_values có phải là một iterable không phải string (vì strings cũng có thể indexed)
+        if not isinstance(possible_values, (list, tuple, np.ndarray)):
+            possible_values = [possible_values]  # Chuyển scalar thành list để tránh lỗi
+
         if isinstance(possible_values[0], float):
             types.append(param_types.Numerical)
         else:
             types.append(param_types.Categorical)
     maxints = [len(possible_values) - 1 for _, possible_values in name_values]
     return name_values, types, maxints
-
-
 def _initIndividual(pcls, maxints):
     part = pcls(random.randint(0, maxint) for maxint in maxints)
     return part
