@@ -2,7 +2,6 @@
 from __future__ import division
 import os
 import warnings
-
 import numpy as np
 import random
 from deap import base, creator, tools, algorithms
@@ -13,8 +12,6 @@ from sklearn.model_selection._search import BaseSearchCV, check_cv
 from sklearn.model_selection import ParameterGrid
 from sklearn.metrics import check_scoring
 from sklearn.utils.validation import _num_samples, indexable
-
-
 def enum(**enums):
     return type("Enum", (), enums)
 
@@ -36,7 +33,7 @@ def _get_param_types_maxint(params):
     """
     name_values = list(params.items())
     types = []
-   def _get_param_types_maxint(params):
+def _get_param_types_maxint(params):
     name_values = list(params.items())
     types = []
     for _, possible_values in name_values:
