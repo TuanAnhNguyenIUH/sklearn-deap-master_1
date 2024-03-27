@@ -45,6 +45,8 @@ def _get_param_types_maxint(params):
             types.append(param_types.Numerical)
         else:
             types.append(param_types.Categorical)
+
+    name_values = [(name, list(values) if hasattr(values, '__iter__') and not isinstance(values, str) else [values]) for name, values in params.items()]
     maxints = [len(possible_values) - 1 for _, possible_values in name_values]
     return name_values, types, maxints
 def _initIndividual(pcls, maxints):
